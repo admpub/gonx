@@ -1,12 +1,14 @@
 package main
 
 import (
-	gonx "../.."
+	"encoding/json"
 	"flag"
 	"fmt"
 	"io"
 	"os"
 	"strings"
+
+	gonx "../.."
 )
 
 var conf string
@@ -68,6 +70,7 @@ func main() {
 			panic(err)
 		}
 		// Process the record... e.g.
-		fmt.Printf("Parsed entry: %+v\n", rec)
+		b, _ := json.Marshal(rec.Fields())
+		fmt.Printf("Parsed entry: %+v\n", string(b))
 	}
 }
